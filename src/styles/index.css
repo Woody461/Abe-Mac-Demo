@@ -1,0 +1,118 @@
+@import "tailwindcss";
+
+/* Fonts are loaded via <link> tags in index.html (faster than a CSS
+   @import, which blocks on a fetch waterfall) - see writeIndexHtml.js */
+
+:root {
+
+  --primary: #2563EB;
+
+  --secondary: #111827;
+
+  --background: #FBF9F6;
+
+  --text: #111827;
+
+  /* Derived tokens — computed from the two brand colors above so every
+     client gets a richer palette without answering more questions. */
+
+  --surface: color-mix(in srgb, var(--primary) 5%, var(--background));
+
+  --edge: color-mix(in srgb, var(--text) 14%, transparent);
+
+  --edge-soft: color-mix(in srgb, var(--text) 7%, transparent);
+
+  --muted: color-mix(in srgb, var(--text) 52%, var(--background));
+
+  --tint: color-mix(in srgb, var(--primary) 14%, white);
+
+  --on-primary: #FFFFFF;
+
+  --font-display: "Anton", "Arial Narrow", sans-serif;
+
+  --font-body: "Work Sans", sans-serif;
+
+  --font-mono: "IBM Plex Mono", "Courier New", monospace;
+
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background: var(--background);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* --------------------
+   Theme Utilities
+--------------------- */
+
+.text-primary { color: var(--primary); }
+.bg-primary { background: var(--primary); }
+.border-primary { border-color: var(--primary); }
+.text-secondary { color: var(--secondary); }
+.bg-secondary { background: var(--secondary); }
+.bg-page { background: var(--background); }
+.text-page { color: var(--text); }
+.bg-surface { background: var(--surface); }
+.text-muted { color: var(--muted); }
+
+.font-display {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
+/* Notched "ticket corner" — the one signature shape used sparingly
+   across buttons and tags instead of plain rounded rectangles everywhere. */
+.notch-corner {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+}
